@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class RobberyWindow : MonoBehaviour
 {
+    #region References
     public GameObject robberyWindowObject;
     public Transform charactersLocation;
     public Button characterPrefab;
@@ -19,14 +20,15 @@ public class RobberyWindow : MonoBehaviour
 
     public GameObject itemsPanel;
     public GameObject charactersPanel;
+    #endregion
 
     public RobberyType robType;
     public int locationNum;
     private Robbery robberyData;
 
     private List<GameObject> items = new List<GameObject>();
-    private List<Button> characters = new List<Button>();
 
+    private Dictionary<Character, Button> charactersDict;
 
     public void OnEnable()
     {
@@ -53,38 +55,23 @@ public class RobberyWindow : MonoBehaviour
 
     public void UpdateCharacters()
     {
-        foreach (Button character in characters) Destroy(character.gameObject);
-        characters.Clear();
+        if (charactersDict != null)
+            foreach (Button character in charactersDict.Values)
+                Destroy(character.gameObject);
 
-        foreach (Button comChar in WM1.charactersPanel.commonCharacters)
+        charactersDict = new Dictionary<Character, Button>();
+
+        foreach (Character character in DataScript.chData.panelCharacters)
         {
-            CharacterCustomization charCust = comChar.GetComponent<CharacterCustomization>();
-            Button tempChar;
-            if (charCust.status == CharacterStatus.robbery)
+            if (character.Status == CharacterStatus.robbery)
             {
-                if (DataScript.chData.panelComCharacters[charCust.number].LocationNum == locationNum
-                    && DataScript.chData.panelComCharacters[charCust.number].StatusValue == (int)robType)
+                if (character.LocationNum == locationNum && character.StatusValue == (int)robType)
                 {
-                    tempChar = Instantiate(characterPrefab, charactersLocation);
-                    tempChar.GetComponent<CharacterCustomization>().CustomizeCommonCharacter(charCust.number);
-                    characters.Add(tempChar);
+                    charactersDict.Add(character, Instantiate(characterPrefab, charactersLocation));
+                    charactersDict[character].GetComponent<CharacterCustomization>().CustomizeCharacter(character);
                 }
             }
-        }
-        foreach (Button spChar in WM1.charactersPanel.specialCharacters)
-        {
-            CharacterCustomization charCust = spChar.GetComponent<CharacterCustomization>();
-            Button tempChar;
-            if (charCust.status == CharacterStatus.robbery)
-            {
-                if (DataScript.chData.panelSpCharacters[charCust.number].LocationNum == locationNum
-                    && DataScript.chData.panelSpCharacters[charCust.number].RobberyType == (int)robType)
-                {
-                    tempChar = Instantiate(characterPrefab, charactersLocation);
-                    tempChar.GetComponent<CharacterCustomization>().CustomizeSpecialCharacter(charCust.number);
-                    characters.Add(tempChar);
-                }
-            }
+
         }
     }
 
@@ -106,16 +93,30 @@ public class RobberyWindow : MonoBehaviour
         }
     }
 
-    public void TryToAddCharacterToRobbery(CharacterCustomization charCust, RobberyType robType, int locNum)
+    public void TryToAddCharacterToRobbery(Character character, RobberyType robType, int locNum)
     {
+        Sprite sprite = null;
+        string name = null;
         ModalPanelDetails details;
+        if (character.GetType() == typeof(CommonCharacter))
+        {
+            CommonCharacter comChar = (CommonCharacter)character;
+            sprite = comChar.Sprite;
+            name = comChar.Name;
+        }
+        else if (character.GetType() == typeof(SpecialCharacter))
+        {
+            SpecialCharacter spChar = (SpecialCharacter)character;
+            sprite = spChar.Sprite;
+            name = spChar.Name;
+        }
 
-        if (charCust.health.value <= 10)
+        if (character.Health <= 10)
         {
             EventButtonDetails yesButton = new EventButtonDetails
             {
                 buttonText = "Да мне плевать",
-                action = () => { AddCharacterToRobberyAndUpdate(charCust.number, charCust.isSpecial, robType, locNum); }
+                action = () => { AddCharacterToRobberyAndUpdate(character, robType, locNum); }
             };
             EventButtonDetails noButton = new EventButtonDetails
             {
@@ -126,68 +127,35 @@ public class RobberyWindow : MonoBehaviour
             {
                 button0Details = yesButton,
                 button1Details = noButton,
-                imageSprite = charCust.portrait.sprite,
+                imageSprite = sprite,
                 text = "Босс, может мне лучше в больницу?",
-                titletext = charCust.characterName.text
+                titletext = name
             };
             WM1.modalPanel.CallModalPanel(details);
         }
         else
         {
-            AddCharacterToRobberyAndUpdate(charCust.number, charCust.isSpecial, robType, locNum);
+            AddCharacterToRobberyAndUpdate(character, robType, locNum);
         }
 
     }
 
-    public void AddCharacterToRobberyAndUpdate(int charNum, bool isSpecial, RobberyType robberyType, int locationNum)
+    public void AddCharacterToRobberyAndUpdate(Character character, RobberyType robberyType, int locationNum)
     {
-        Character chDat;
-
-        if (!isSpecial) chDat = DataScript.chData.panelComCharacters[charNum].GetStats();
-        else chDat = DataScript.chData.panelSpCharacters[charNum].GetStats();
-
-        chDat.Status = CharacterStatus.robbery;
-        chDat.RobberyType = (int)robberyType;
-        chDat.LocationNum = locationNum;
-
-        if (!isSpecial)
-        {
-            DataScript.chData.panelComCharacters[charNum].SetStats(chDat);
-            WM1.charactersPanel.commonCharacters[charNum].GetComponent<CharacterCustomization>().SetCharStats();
-            //DataScript.eData.robberiesData[robberyType][locationNum].commonCharacters.Add(DataScript.chData.panelComCharacters[charNum]);
-        }
-        else
-        {
-            DataScript.chData.panelSpCharacters[charNum].SetStats(chDat);
-            WM1.charactersPanel.specialCharacters[charNum].GetComponent<CharacterCustomization>().SetCharStats();
-            //DataScript.eData.robberiesData[robberyType][locationNum].specialCharacters.Add(DataScript.chData.panelSpCharacters[charNum]);
-        }
+        character.Status = CharacterStatus.robbery;
+        character.RobberyType = (int)robberyType;
+        character.LocationNum = locationNum;
 
         if (robberyWindowObject.activeInHierarchy) UpdateCharacters();
         RM.rmInstance.GetRobberyCustomization(robberyType, locationNum).CounterPlus();
     }
 
-    public void RemoveCharacterFromRobberyAndUpdate(int charNum, bool isSpecial, RobberyType robType, int locNum)
+    public void RemoveCharacterFromRobberyAndUpdate(Character character, RobberyType robType, int locNum)
     {
-        Character chDat;
+        character.Status = CharacterStatus.normal;
+        character.RobberyType = 0;
+        character.LocationNum = locationNum;
 
-        if (!isSpecial) chDat = DataScript.chData.panelComCharacters[charNum].GetStats();
-        else chDat = DataScript.chData.panelSpCharacters[charNum].GetStats();
-
-        chDat.Status = CharacterStatus.normal;
-        chDat.RobberyType = 0;
-        chDat.LocationNum = locationNum;
-
-        if (!isSpecial)
-        {
-            DataScript.chData.panelComCharacters[charNum].SetStats(chDat);
-            WM1.charactersPanel.commonCharacters[charNum].GetComponent<CharacterCustomization>().SetCharStats();
-        }
-        else
-        {
-            DataScript.chData.panelSpCharacters[charNum].SetStats(chDat);
-            WM1.charactersPanel.specialCharacters[charNum].GetComponent<CharacterCustomization>().SetCharStats();
-        }
         if (robberyWindowObject.activeInHierarchy) UpdateCharacters();
         RM.rmInstance.GetRobberyCustomization(robType, locationNum).CounterMinus();
     }
@@ -197,7 +165,7 @@ public class RobberyWindow : MonoBehaviour
         //ModalPanelDetails details;
 
         //if (DataScript.eData.IsRobberyEmpty(robberyType, locationNum))
-            WM1.robberyItemsWindow.SetItemsWindow(itemNumber, isItemAdding: true, robberyType: robberyType, locationNum: locationNum);
+        WM1.robberyItemsWindow.SetItemsWindow(itemNumber, isItemAdding: true, robberyType: robberyType, locationNum: locationNum);
         //else
         //{
         //    EventButtonDetails yesButton = new EventButtonDetails

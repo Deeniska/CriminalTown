@@ -41,9 +41,7 @@ public class RobberyCustomization : MonoBehaviour
     {
         if (DataScript.eData.IsRobberyEmpty(robberyType, number))
         {
-            foreach (CommonCharacter comChar in DataScript.eData.GetCommonCharactersForRobbery(robberyType, number))
-                charCounterIcons.Add(Instantiate(charCounterIconPrefab, counter));
-            foreach (SpecialCharacter spChar in DataScript.eData.GetSpecialCharactersForRobbery(robberyType, number))
+            foreach (Character character in DataScript.eData.GetCharactersForRobbery(robberyType, number))
                 charCounterIcons.Add(Instantiate(charCounterIconPrefab, counter));
         }
     }

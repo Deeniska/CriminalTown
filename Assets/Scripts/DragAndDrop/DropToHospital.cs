@@ -32,7 +32,7 @@ public class DropToHospital : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
                     if (charCust != null)
                         if (charCust.status == CharacterStatus.normal)
-                            hospital.GetComponent<OnHospitalOpen>().TryToAddCharacterToHospital(charCust);
+                            hospital.GetComponent<OnHospitalOpen>().TryToAddCharacterToHospital(charCust.character);
                 }
                 isEntered = false;
             }

@@ -55,8 +55,9 @@ public class NightRobberyData
     public int healthAffect;
     public int policeKnowledge;
 
-    public List<CommonCharacter> commonCharacters;
-    public List<SpecialCharacter> specialCharacters;
+    public List<Character> characters;
+    //public List<CommonCharacter> commonCharacters;
+    //public List<SpecialCharacter> specialCharacters;
 }
 
 public class NightEventsOptions : MonoBehaviour

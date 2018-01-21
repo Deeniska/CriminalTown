@@ -206,65 +206,58 @@ public class RobberiesOptions : MonoBehaviour
         float cLuck = 0;
         float cFear = 0;
 
-        foreach (CommonCharacter comChar in DataScript.eData.GetCommonCharactersForRobbery(robberyType, locationNum))
-        {
-            count++;
-            cStrength += comChar.Strength;
-            cAgility += comChar.Agility;
-            cSkill += comChar.Skill;
-            cLuck += comChar.Luck;
-            cFear += comChar.Fear;
-        }
-
-
-        foreach (SpecialCharacter spChar in DataScript.eData.GetSpecialCharactersForRobbery(robberyType, locationNum))
+        foreach (Character character in DataScript.eData.GetCharactersForRobbery(robberyType, locationNum))
         {
             count++;
             float coefStr = 1, coefAg = 1, coefSk = 1, coefL = 1, coefF = 1;
 
-            foreach (int traitId in spChar.TraitIds)
+            if (character.GetType() == typeof(SpecialCharacter))
             {
-                Trait tempTrait = TraitsOptions.GetTrait(traitId);
-
-                //При редактировании трейтов ДОБАВИТЬ ИХ СЮДА!!!!!
-                switch (tempTrait.traitType)
+                SpecialCharacter spChar = (SpecialCharacter)character;
+                foreach (int traitId in spChar.TraitIds)
                 {
-                    case TraitType.single:
-                        switch (tempTrait.stat)
-                        {
-                            case Stat.strenght:
-                                coefStr = tempTrait.value;
-                                break;
-                            case Stat.luck:
-                                coefL = tempTrait.value;
-                                break;
-                            case Stat.fear:
-                                coefF = tempTrait.value;
-                                break;
-                            case Stat.skill:
-                                coefSk = tempTrait.value;
-                                break;
-                            case Stat.agility:
-                                coefAg = tempTrait.value;
-                                break;
-                            default:
-                                break;
-                        }
-                        break;
-                    case TraitType.group:
-                        groupTraits.Add(tempTrait);
-                        break;
-                    case TraitType.chance:
-                        chanceTraits.Add(tempTrait);
-                        break;
+                    Trait tempTrait = TraitsOptions.GetTrait(traitId);
+
+                    //При редактировании трейтов ДОБАВИТЬ ИХ СЮДА!!!!!
+                    switch (tempTrait.traitType)
+                    {
+                        case TraitType.single:
+                            switch (tempTrait.stat)
+                            {
+                                case Stat.strenght:
+                                    coefStr = tempTrait.value;
+                                    break;
+                                case Stat.luck:
+                                    coefL = tempTrait.value;
+                                    break;
+                                case Stat.fear:
+                                    coefF = tempTrait.value;
+                                    break;
+                                case Stat.skill:
+                                    coefSk = tempTrait.value;
+                                    break;
+                                case Stat.agility:
+                                    coefAg = tempTrait.value;
+                                    break;
+                                default:
+                                    break;
+                            }
+                            break;
+                        case TraitType.group:
+                            groupTraits.Add(tempTrait);
+                            break;
+                        case TraitType.chance:
+                            chanceTraits.Add(tempTrait);
+                            break;
+                    }
                 }
             }
 
-            cStrength += (spChar.Strength * coefStr);
-            cAgility += (spChar.Agility * coefAg);
-            cSkill += (spChar.Skill * coefSk);
-            cLuck += (spChar.Luck * coefL);
-            cFear += (spChar.Fear * coefF);
+            cStrength += (character.Strength * coefStr);
+            cAgility += (character.Agility * coefAg);
+            cSkill += (character.Skill * coefSk);
+            cLuck += (character.Luck * coefL);
+            cFear += (character.Fear * coefF);
         }
 
         foreach (Trait groupTrait in groupTraits)

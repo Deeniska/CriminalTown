@@ -41,9 +41,7 @@ public class CharacterCustomization : MonoBehaviour
     public Text arrDaysLeft;
     #endregion
 
-    private Character character;
-    public bool isSpecial;
-    public int number;
+    public Character character;
     public CharacterStatus status;
 
 
@@ -86,7 +84,6 @@ public class CharacterCustomization : MonoBehaviour
             CommonCharacter comChar = (CommonCharacter)character;
             portrait.sprite = comChar.Sprite;
             characterName.text = comChar.Name;
-            isSpecial = true;
             status = comChar.Status;
         }
         else if (character.GetType() == typeof(SpecialCharacter))

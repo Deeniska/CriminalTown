@@ -101,24 +101,26 @@ public class WM1 : MonoBehaviour
         charactersPanel.UpdateCharactersPanel();
         banditCamp.UpdateBanditCamp();
         hospital.UpdateHospital();
+        policeStation.UpdatePoliceStationCharacters();
     }
 
     public void CloseAllDayWindows()
     {
-        if (modalPanelObject.activeInHierarchy) modalPanelObject.SetActive(false);
-        if (robberyWindowObject.activeInHierarchy) robberyWindowObject.SetActive(false);
-        if (characterMenuObject.activeInHierarchy) characterMenuObject.SetActive(false);
-        if (robberyItemsWindowObject.activeInHierarchy) robberyItemsWindowObject.SetActive(false);
-        if (policeStationObject.activeInHierarchy) policeStationObject.SetActive(false);
-        if (hospitalObject.activeInHierarchy) hospitalObject.SetActive(false);
-        if (blackMarketObject.activeInHierarchy) blackMarketObject.SetActive(false);
-        if (buyWindowObject.activeInHierarchy) buyWindowObject.SetActive(false);
-        if (nightResumeWindowObject.activeInHierarchy) nightResumeWindowObject.SetActive(false);
+        modalPanelObject.SetActive(false);
+        robberyWindowObject.SetActive(false);
+        characterMenuObject.SetActive(false);
+        robberyItemsWindowObject.SetActive(false);
+        policeStationObject.SetActive(false);
+        hospitalObject.SetActive(false);
+        blackMarketObject.SetActive(false);
+        buyWindowObject.SetActive(false);
+        banditCampObject.SetActive(false);
+        nightResumeWindowObject.SetActive(false);
     }
 
     public static void SetActivePanels(bool status)
     {
-        charactersPanel.SetActive(false);
+        charactersPanel.SetActive(status);
         //SetActiveItemsPanel(false);
 
         foreach (GameObject item in itemsPanel.Items)

@@ -351,126 +351,125 @@ public partial class CharactersOptions : MonoBehaviour
     public static int GetRandomCharLevelAtCurrentMoment()
     {
         int summ = 0;
-        foreach (CommonCharacter comChar in DataScript.chData.panelComCharacters) summ += comChar.Level;
-        foreach (SpecialCharacter spChar in DataScript.chData.panelSpCharacters) summ += spChar.Level;
-        int average = summ == 0 ? 0 : summ / (DataScript.chData.panelSpCharacters.Count + DataScript.chData.panelComCharacters.Count);
-        return average < levelsRndDispersion ? Random.Range(0, average + levelsRndDispersion) :
+        foreach (Character character in DataScript.chData.panelCharacters) summ += character.Level;
+        int average = summ == 0 ? 0 : summ / DataScript.chData.panelCharacters.Count;
+        return average<levelsRndDispersion? Random.Range(0, average + levelsRndDispersion) :
             Random.Range(average - levelsRndDispersion, average + levelsRndDispersion);
     }
 
-    public static int GetExperienceMaxValue(int level)
+public static int GetExperienceMaxValue(int level)
+{
+    return 100 + level * expStepByLevel;
+}
+//Доделать 
+public static CommonCharacter GetRandomCommonCharacter(int level)
+{
+    CommonCharacter randomCharacter = new CommonCharacter();
+    int sex = Random.Range(0, 2);
+    if (sex == 0)
     {
-        return 100 + level * expStepByLevel;
+        randomCharacter.HistoryId = Random.Range(0, commonMaleHistories.Count);
+        randomCharacter.NameId = Random.Range(0, commonMaleNames.Count);
+        randomCharacter.SpriteId = Random.Range(0, comMaleSpritesAmount);
     }
-    //Доделать 
-    public static CommonCharacter GetRandomCommonCharacter(int level)
+    if (sex == 1)
     {
-        CommonCharacter randomCharacter = new CommonCharacter();
-        int sex = Random.Range(0, 2);
-        if (sex == 0)
-        {
-            randomCharacter.HistoryId = Random.Range(0, commonMaleHistories.Count);
-            randomCharacter.NameId = Random.Range(0, commonMaleNames.Count);
-            randomCharacter.SpriteId = Random.Range(0, comMaleSpritesAmount);
-        }
-        if (sex == 1)
-        {
-            randomCharacter.HistoryId = Random.Range(0, commonFemaleHistories.Count);
-            randomCharacter.NameId = Random.Range(0, commonFemaleNames.Count);
-            randomCharacter.SpriteId = Random.Range(0, comFemaleSpritesAmount);
-        }
-
-        randomCharacter.Level = level;
-
-        int[] rndStats = GetRandomStats(randomCharacter.Level);
-
-        randomCharacter.Status = CharacterStatus.normal;
-        randomCharacter.StatusValue = 0;
-        randomCharacter.LocationNum = 1;
-
-        randomCharacter.Sex = (Sex)sex;
-        randomCharacter.Strength = rndStats[0];
-        randomCharacter.Agility = rndStats[1];
-        randomCharacter.Skill = rndStats[2];
-        randomCharacter.Luck = Random.Range(0, 5);
-        randomCharacter.Fear = Random.Range(25, 51);
-
-        randomCharacter.Tiredness = Random.Range(0, maxTiredness / 2);
-        randomCharacter.Exp = 0;
-        randomCharacter.Points = 0;
-        randomCharacter.Health = Random.Range(maxHealth * 1 / 2, maxHealth + 1);
-
-        return randomCharacter;
+        randomCharacter.HistoryId = Random.Range(0, commonFemaleHistories.Count);
+        randomCharacter.NameId = Random.Range(0, commonFemaleNames.Count);
+        randomCharacter.SpriteId = Random.Range(0, comFemaleSpritesAmount);
     }
 
-    public static SpecialCharacter GetSpecialCharacter(int authorityLevel, int charNum)
+    randomCharacter.Level = level;
+
+    int[] rndStats = GetRandomStats(randomCharacter.Level);
+
+    randomCharacter.Status = CharacterStatus.normal;
+    randomCharacter.StatusValue = 0;
+    randomCharacter.LocationNum = 1;
+
+    randomCharacter.Sex = (Sex)sex;
+    randomCharacter.Strength = rndStats[0];
+    randomCharacter.Agility = rndStats[1];
+    randomCharacter.Skill = rndStats[2];
+    randomCharacter.Luck = Random.Range(0, 5);
+    randomCharacter.Fear = Random.Range(25, 51);
+
+    randomCharacter.Tiredness = Random.Range(0, maxTiredness / 2);
+    randomCharacter.Exp = 0;
+    randomCharacter.Points = 0;
+    randomCharacter.Health = Random.Range(maxHealth * 1 / 2, maxHealth + 1);
+
+    return randomCharacter;
+}
+
+public static SpecialCharacter GetSpecialCharacter(int authorityLevel, int charNum)
+{
+    int rndLevel = GetRandomCharLevelAtCurrentMoment() + levelsRndDispersion;
+    int[] rndStats = GetRandomStats(rndLevel);
+    //int rndId = Random.Range(0, specialCharactersAuthList[authorityLevel].Count);
+
+    SpecialCharacter specialCharacter = new SpecialCharacter()
     {
-        int rndLevel = GetRandomCharLevelAtCurrentMoment() + levelsRndDispersion;
-        int[] rndStats = GetRandomStats(rndLevel);
-        //int rndId = Random.Range(0, specialCharactersAuthList[authorityLevel].Count);
+        Status = CharacterStatus.normal,
+        StatusValue = 0,
+        LocationNum = 1,
 
-        SpecialCharacter specialCharacter = new SpecialCharacter()
-        {
-            Status = CharacterStatus.normal,
-            StatusValue = 0,
-            LocationNum = 1,
-
-            Level = rndLevel,
-            Authority = authorityLevel,
-            Id = charNum,
-            SpriteId = int.Parse(specialCharactersAuthList[authorityLevel][charNum][CharacterProperty.spriteId]),
-            TraitIds = new List<int>
+        Level = rndLevel,
+        Authority = authorityLevel,
+        Id = charNum,
+        SpriteId = int.Parse(specialCharactersAuthList[authorityLevel][charNum][CharacterProperty.spriteId]),
+        TraitIds = new List<int>
             {
                 int.Parse(specialCharactersAuthList[authorityLevel][charNum][CharacterProperty.traitId])
             },
 
-            Strength = rndStats[0],
-            Agility = rndStats[1],
-            Skill = rndStats[2],
-            Luck = Random.Range(5, 7),
-            Fear = Random.Range(0, 26),
+        Strength = rndStats[0],
+        Agility = rndStats[1],
+        Skill = rndStats[2],
+        Luck = Random.Range(5, 7),
+        Fear = Random.Range(0, 26),
 
-            Tiredness = Random.Range(0, maxTiredness / 4),
-            Exp = 0,
-            Points = 0,
-            Health = Random.Range(maxHealth * 3 / 4, maxHealth + 1),
-        };
+        Tiredness = Random.Range(0, maxTiredness / 4),
+        Exp = 0,
+        Points = 0,
+        Health = Random.Range(maxHealth * 3 / 4, maxHealth + 1),
+    };
 
-        return specialCharacter;
-    }
+    return specialCharacter;
+}
 
-    public static int GetComPrice(int lvl)
+public static int GetComPrice(int lvl)
+{
+    return 100 * lvl;
+}
+
+public static int GetSpPrice(int lvl)
+{
+    return 1000 * lvl;
+}
+
+public static int GetBoostRecoveryPrice(int lvl)
+{
+    return 20 * lvl;
+}
+
+public static int GetBreakOutPrice(int lvl)
+{
+    return 50 * lvl;
+}
+
+public static void FillCampCells()
+{
+    while (DataScript.chData.panelCharacters.Count < campComCellsAmount)
     {
-        return 100 * lvl;
+        CommonCharacter randomComCharacter = GetRandomCommonCharacter(GetRandomCharLevelAtCurrentMoment());
+        DataScript.chData.panelCharacters.Add(randomComCharacter);
     }
-
-    public static int GetSpPrice(int lvl)
+    while (DataScript.chData.panelCharacters.Count < campSpCellsAmount)
     {
-        return 1000 * lvl;
+        SpecialCharacter randomSpCharacter = GetSpecialCharacter(DataScript.pData.authority, 0);
+        DataScript.chData.panelCharacters.Add(randomSpCharacter);
     }
-
-    public static int GetBoostRecoveryPrice(int lvl)
-    {
-        return 20 * lvl;
-    }
-
-    public static int GetBreakOutPrice(int lvl)
-    {
-        return 50 * lvl;
-    }
-
-    public static void FillCampCells()
-    {
-        while (DataScript.chData.campComCharacters.Count < campComCellsAmount)
-        {
-            CommonCharacter randomComCharacter = GetRandomCommonCharacter(GetRandomCharLevelAtCurrentMoment());
-            DataScript.chData.campComCharacters.Add(randomComCharacter);
-        }
-        while (DataScript.chData.campSpCharacters.Count < campSpCellsAmount)
-        {
-            SpecialCharacter randomSpCharacter = GetSpecialCharacter(DataScript.pData.authority, 0);
-            DataScript.chData.campSpCharacters.Add(randomSpCharacter);
-        }
-        //DataScript.SaveCharactersData();
-    }
+    //DataScript.SaveCharactersData();
+}
 }

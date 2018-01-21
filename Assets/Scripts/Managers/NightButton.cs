@@ -35,37 +35,33 @@ public class NightButton : MonoBehaviour
             action = WM1.modalPanel.ClosePanel
         };
 
-        foreach (CommonCharacter comChar in DataScript.chData.panelComCharacters)
+        foreach (Character character in DataScript.chData.panelCharacters)
         {
-            
-            if (comChar.Status == CharacterStatus.arrested)
-                if (comChar.DaysLeft < 2)
+            if (character.Status == CharacterStatus.arrested)
+                if (character.DaysLeft < 2)
                 {
-                    ModalPanelDetails details = new ModalPanelDetails
+                    Sprite sprite = null;
+                    string name = null;
+                    if (character.GetType() == typeof(CommonCharacter))
                     {
-                        button0Details = yesButton,
-                        button1Details = noButton,
-                        imageSprite = comChar.Sprite,
-                        text = "Этот персонаж скоро нас сдаст. Босс, ты уверен, что стоит оставить его в грязных руках копов?",
-                        titletext = comChar.Name
-                    };
-                    WM1.modalPanel.CallModalPanel(details);
-                    return;
-                }
-        }
-        foreach (SpecialCharacter spChar in DataScript.chData.panelSpCharacters)
-        {
+                        CommonCharacter comChar = (CommonCharacter)character;
+                        sprite = comChar.Sprite;
+                        name = comChar.Name;
+                    }
+                    else if (character.GetType() == typeof(SpecialCharacter))
+                    {
+                        SpecialCharacter spChar = (SpecialCharacter)character;
+                        sprite = spChar.Sprite;
+                        name = spChar.Name;
+                    }
 
-            if (spChar.Status == CharacterStatus.arrested)
-                if (spChar.DaysLeft < 2)
-                {
                     ModalPanelDetails details = new ModalPanelDetails
                     {
                         button0Details = yesButton,
                         button1Details = noButton,
-                        imageSprite = WM1.charactersOptions.specialSprites[spChar.SpriteId],
+                        imageSprite = sprite,
                         text = "Этот персонаж скоро нас сдаст. Босс, ты уверен, что стоит оставить его в грязных руках копов?",
-                        titletext = spChar.Name
+                        titletext = name
                     };
                     WM1.modalPanel.CallModalPanel(details);
                     return;
@@ -226,61 +222,34 @@ public class NightButton : MonoBehaviour
                 robbery.money = RobberiesOptions.GetRobberyMoneyRewardAtTheCurrentMoment(robbery.robberyType);
                 robbery.awards = RobberiesOptions.GetRobberyAwardsAtTheCurrentMoment(robbery.robberyType);
                 robbery.policeKnowledge = 1;
-                robbery.commonCharacters = new List<CommonCharacter>();
-                robbery.specialCharacters = new List<SpecialCharacter>();
+                robbery.characters = new List<Character>();
 
-                foreach (CommonCharacter comChar in DataScript.eData.GetCommonCharactersForRobbery(robbery.robberyType, robbery.locationNum))
-                    robbery.commonCharacters.Add(comChar);
-                foreach (SpecialCharacter spChar in DataScript.eData.GetSpecialCharactersForRobbery(robbery.robberyType, robbery.locationNum))
-                    robbery.specialCharacters.Add(spChar);
+                foreach (Character character in DataScript.eData.GetCharactersForRobbery(robbery.robberyType, robbery.locationNum))
+                    robbery.characters.Add(character);
             }
     }
 
     private void UpdateDataAfterDay()
     {
-        for (int i = 0; i < DataScript.chData.panelComCharacters.Count; i++)
+        foreach (Character character in DataScript.chData.panelCharacters)
         {
-            CommonCharacter comChar = DataScript.chData.panelComCharacters[i];
-            if (comChar.Status == CharacterStatus.hospital)
+            if (character.Status == CharacterStatus.hospital)
             {
-                comChar.StatusValue += CharactersOptions.recoveryStep * comChar.BoostCoefficient;
-                if (comChar.StatusValue >= 100)
+                character.StatusValue += CharactersOptions.recoveryStep * character.BoostCoefficient;
+                if (character.StatusValue >= 100)
                 {
-                    WM1.charactersPanel.commonCharacters[i].GetComponent<CharacterCustomization>().Animator.SetTrigger("Recovering");
-                    comChar.Status = CharacterStatus.normal;
-                    comChar.Health = 100;
+                    //WM1.charactersPanel.charactersDict[character].GetComponent<CharacterCustomization>().Animator.SetTrigger("Recovering");
+                    character.Status = CharacterStatus.normal;
+                    character.Health = 100;
                 }
             }
-            if (comChar.Status == CharacterStatus.arrested)
+            if (character.Status == CharacterStatus.arrested)
             {
-                comChar.StatusValue -= comChar.Fear;
-                if (comChar.StatusValue <= 0)
+                character.StatusValue -= character.Fear;
+                if (character.StatusValue <= 0)
                 {
                     DataScript.eData.policeKnowledge += 10;
-                    WM1.charactersPanel.RemoveCharacter(false, i);
-                }
-            }
-        }
-        for (int i = 0; i < DataScript.chData.panelSpCharacters.Count; i++)
-        {
-            SpecialCharacter spChar = DataScript.chData.panelSpCharacters[i];
-            if (spChar.Status == CharacterStatus.hospital)
-            {
-                spChar.StatusValue += CharactersOptions.recoveryStep * spChar.BoostCoefficient;
-                if (spChar.StatusValue >= 100)
-                {
-                    WM1.charactersPanel.specialCharacters[i].GetComponent<CharacterCustomization>().Animator.SetTrigger("Recovering");
-                    spChar.Status = CharacterStatus.normal;
-                    spChar.Health = 100;
-                }
-            }
-            if (spChar.Status == CharacterStatus.arrested)
-            {
-                spChar.StatusValue -= spChar.Fear;
-                if (spChar.StatusValue <= 0)
-                {
-                    DataScript.eData.policeKnowledge += 10;
-                    WM1.charactersPanel.RemoveCharacter(true, i);
+                    DataScript.chData.RemoveCharacter(character);
                 }
             }
         }
@@ -295,16 +264,14 @@ public class NightButton : MonoBehaviour
             foreach (int itemNum in robbery.awards.Keys)
                 DataScript.sData.itemsCount[itemNum] += robbery.awards[itemNum];
             
-            foreach (CommonCharacter comChar in robbery.commonCharacters)
+            foreach (CommonCharacter character in robbery.characters)
             {
-                if (comChar.Health <= 0)
+                if (character.Health <= 0)
                 {
-
+                    //TO HOSPITAL
                 }
-                comChar.Status = CharacterStatus.normal;
+                character.Status = CharacterStatus.normal;
             }
-            foreach (SpecialCharacter spChar in robbery.specialCharacters)
-                spChar.Status = CharacterStatus.normal;
             WM1.robberyWindow.RemoveAllItemsFromRoobbery(robbery.robberyType, robbery.locationNum);
         }
         robberies.Clear();

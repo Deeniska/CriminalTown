@@ -34,7 +34,7 @@ public class DropToRobberyWindow : MonoBehaviour, IPointerEnterHandler, IPointer
 
                     if (charCust != null)
                         if (charCust.status == CharacterStatus.normal)
-                            WM1.robberyWindow.TryToAddCharacterToRobbery(charCust, robType, locNum);
+                            WM1.robberyWindow.TryToAddCharacterToRobbery(charCust.character, robType, locNum);
                 }
                 if (Drag.itemBeingDragged.GetComponent<DragItem>())
                 {
@@ -57,7 +57,7 @@ public class DropToRobberyWindow : MonoBehaviour, IPointerEnterHandler, IPointer
 
                     if (charCust.status == CharacterStatus.robbery)
                         if (dragHandler.StartParent.parent == WM1.robberyWindow.GetComponent<RobberyWindow>().charactersLocation)
-                            WM1.robberyWindow.RemoveCharacterFromRobberyAndUpdate(charCust.number, charCust.isSpecial, WM1.robberyWindow.robType, WM1.robberyWindow.locationNum);
+                            WM1.robberyWindow.RemoveCharacterFromRobberyAndUpdate(charCust.character, WM1.robberyWindow.robType, WM1.robberyWindow.locationNum);
                 }
                 if (Drag.itemBeingDragged.GetComponent<DragItem>())
                 {

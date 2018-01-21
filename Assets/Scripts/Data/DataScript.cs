@@ -55,29 +55,38 @@ public class EData
 
     public Dictionary<RobberyType, Dictionary<int, Robbery>> robberiesData;
 
-    public IEnumerable<CommonCharacter> GetCommonCharactersForRobbery(RobberyType robberyType, int locationNum)
+    //public IEnumerable<CommonCharacter> GetCommonCharactersForRobbery(RobberyType robberyType, int locationNum)
+    //{
+    //    foreach (CommonCharacter comChar in DataScript.chData.panelComCharacters)
+    //    {
+    //        if (comChar.Status == CharacterStatus.robbery)
+    //            if (comChar.LocationNum == locationNum && comChar.RobberyType == (int)robberyType)
+    //                yield return comChar;
+    //    }
+    //}
+    //public IEnumerable<SpecialCharacter> GetSpecialCharactersForRobbery(RobberyType robberyType, int locationNum)
+    //{
+    //    foreach (SpecialCharacter spChar in DataScript.chData.panelSpCharacters)
+    //    {
+    //        if (spChar.Status == CharacterStatus.robbery)
+    //            if (spChar.LocationNum == locationNum && spChar.RobberyType == (int)robberyType)
+    //                yield return spChar;
+    //    }
+    //}
+    public IEnumerable<Character> GetCharactersForRobbery(RobberyType robberyType, int locationNum)
     {
-        foreach (CommonCharacter comChar in DataScript.chData.panelComCharacters)
+        foreach (Character character in DataScript.chData.panelCharacters)
         {
-            if (comChar.Status == CharacterStatus.robbery)
-                if (comChar.LocationNum == locationNum && comChar.RobberyType == (int)robberyType)
-                    yield return comChar;
-        }
-    }
-    public IEnumerable<SpecialCharacter> GetSpecialCharactersForRobbery(RobberyType robberyType, int locationNum)
-    {
-        foreach (SpecialCharacter spChar in DataScript.chData.panelSpCharacters)
-        {
-            if (spChar.Status == CharacterStatus.robbery)
-                if (spChar.LocationNum == locationNum && spChar.RobberyType == (int)robberyType)
-                    yield return spChar;
+            if (character.Status == CharacterStatus.robbery)
+                if (character.LocationNum == locationNum && character.RobberyType == (int)robberyType)
+                    yield return character;
         }
     }
 
+
     public bool IsRobberyEmpty(RobberyType robberyType, int locationNum)
     {
-        return DataScript.eData.GetCommonCharactersForRobbery(robberyType, locationNum).GetEnumerator().MoveNext() ||
-            DataScript.eData.GetSpecialCharactersForRobbery(robberyType, locationNum).GetEnumerator().MoveNext();
+        return DataScript.eData.GetCharactersForRobbery(robberyType, locationNum).GetEnumerator().MoveNext();
     }
 }
 
