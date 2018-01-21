@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<questsCollection>
+  <quest id="0">
+    <node n="0">
+      <questText>Здарова, тебе нужно вынести ларёк</questText>
+      <questType>robbery</questType>
+      <robberyType>stall</robberyType>
+      <winCond type ="count" next ="1">1</winCond>
+      <loseCond type ="daysLimit">3</loseCond>
+    </node>
+    <node n="1">
+      <questText>Кому отдать награбленное?</questText>
+      <questType>Choice</questType>
+      <choice num="0" next ="2">Друзьям</choice>
+      <choice num="1" next ="3">Врагам</choice>
+    </node>
+    <node n="2">
+      <questText>Ты сделал правильный выбор</questText>
+      <questType>Award</questType>
+      <awardType></awardType>
+    </node>
+    <node n="3">
+      <questText>Ты сделал неправильный выбор</questText>
+      <questType>Award</questType>
+    </node>
+  </quest>
+</questsCollection>

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<traitsCollection>
+  <trait id="0">
+    <name>Счастливчик</name>
+    <description>Очень везучий чувак. +20% к удаче</description>
+    <traitType>single</traitType>
+    <stat>luck</stat>
+    <value>1.2</value>
+  </trait>
+  <trait id="1">
+    <name>Бесстрашный</name>
+    <description>Не даст команде пасть духом</description>
+    <traitType>group</traitType>
+    <stat>fear</stat>
+    <value>0.5</value>
+  </trait>
+  <trait id="2">
+    <name>Силач</name>
+    <description>Очень сильный чувак. +20% к силе</description>
+    <traitType>single</traitType>
+    <stat>strenght</stat>
+    <value>1.2</value>
+  </trait>
+  <trait id="3">
+    <name>Ловкач</name>
+    <description>Очень ловкий чувак. +20% к ловкости</description>
+    <traitType>single</traitType>
+    <stat>agility</stat>
+    <value>1.2</value>
+  </trait>
+  <trait id="4">
+    <name>Скилловый пацан</name>
+    <description>Разбирается во всём. +20% к проф-скиллу</description>
+    <traitType>single</traitType>
+    <stat>skill</stat>
+    <value>1.2</value>
+  </trait>
+  <trait id="5">
+    <name>Здоровяк</name>
+    <description>Одарён природой. +20% к здоровью</description>
+    <traitType>single</traitType>
+    <stat>health</stat>
+    <value>1.2</value>
+  </trait>
+
+</traitsCollection>

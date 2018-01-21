@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<items>
+  <item number ="0" isSpecial="0">
+    <description></description>
+    <name>Отмычка</name>
+    <price>100</price>
+    <influence place="0">1</influence>
+    <influence place="1">1</influence>
+    <influence place="2">1</influence>
+    <influence place="3">1</influence>
+    <influence place="4">1</influence>
+  </item>
+
+  <item number ="1" isSpecial="0">
+    <description></description>
+    <name>Нож</name>
+    <price>500</price>
+    <influence place="0">1</influence>
+    <influence place="1">1</influence>
+    <influence place="2">1</influence>
+    <influence place="3">1</influence>
+    <influence place="4">1</influence>
+  </item>
+
+  <item number ="2" isSpecial="0">
+    <description></description>
+    <name>Пистолет</name>
+    <price>2300</price>
+    <influence place="0">1</influence>
+    <influence place="1">1</influence>
+    <influence place="2">1</influence>
+    <influence place="3">1</influence>
+    <influence place="4">1</influence>
+  </item>
+
+  <item number ="3" isSpecial="0">
+    <description></description>
+    <name>Обрез</name>
+    <price>4600</price>
+    <influence place="0">1</influence>
+    <influence place="1">1</influence>
+    <influence place="2">1</influence>
+    <influence place="3">1</influence>
+    <influence place="4">1</influence>
+  </item>
+
+  <item number ="4" isSpecial="0">
+    <description></description>
+    <name>ItemName</name>
+    <price>1</price>
+    <influence place="0">1</influence>
+    <influence place="1">1</influence>
+    <influence place="2">1</influence>
+    <influence place="3">1</influence>
+    <influence place="4">1</influence>
+  </item>
+
+  <item number ="5" isSpecial="0">
+    <description></description>
+    <name>ItemName</name>
+    <price>1</price>
+    <influence place="0">1</influence>
+    <influence place="1">1</influence>
+    <influence place="2">1</influence>
+    <influence place="3">1</influence>
+    <influence place="4">1</influence>
+  </item>
+
+  <item number ="6" isSpecial="0">
+    <description></description>
+    <name>ItemName</name>
+    <price>1</price>
+    <influence place="0">1</influence>
+    <influence place="1">1</influence>
+    <influence place="2">1</influence>
+    <influence place="3">1</influence>
+    <influence place="4">1</influence>
+  </item>
+
+  <item number ="7" isSpecial="0">
+    <description></description>
+    <name>ItemName</name>
+    <price>1</price>
+    <influence place="0">1</influence>
+    <influence place="1">1</influence>
+    <influence place="2">1</influence>
+    <influence place="3">1</influence>
+    <influence place="4">1</influence>
+  </item>
+
+  <item number ="8" isSpecial="1">
+    <description></description>
+    <name>Трофейный нож</name>
+    <price>1</price>
+    <influence place="0">1</influence>
+    <influence place="1">1</influence>
+    <influence place="2">1</influence>
+    <influence place="3">1</influence>
+    <influence place="4">1</influence>
+  </item>
+
+  <item number ="9" isSpecial="1">
+    <description></description>
+    <name>Уникальный кастет</name>
+    <price>1</price>
+    <influence place="0">1</influence>
+    <influence place="1">1</influence>
+    <influence place="2">1</influence>
+    <influence place="3">1</influence>
+    <influence place="4">1</influence>
+  </item>
+</items>

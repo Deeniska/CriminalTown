@@ -1,0 +1,949 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<eventsCollection>
+  <robbery type="0">
+    <event id="0">
+      <node>
+        <text>Какой-то странный бомж меня заметил. Что делать, босс?</text>
+        <sprite>
+          <spriteType>people</spriteType>
+          <spriteId>0</spriteId>
+        </sprite>
+
+        <button id="0">
+          <text>Уходи</text>
+          <effect>10</effect>
+
+          <node>
+            <text>Похоже, он вызвал копов. Могу пойти через дворы. Или попробовать поймать тачку на дороге?</text>
+            <sptite>
+              <spriteType>people</spriteType>
+              <spriteId>0</spriteId>
+            </sptite>
+
+            <button id="0">
+              <text>Дворы</text>
+              <effect>10</effect>
+            </button>
+
+            <button id="1">
+              <text>Дорога</text>
+              <effect>-100</effect>
+              <policeEffect>100</policeEffect>
+            </button>
+          </node>
+        </button>
+
+        <button id="1">
+          <text>Мочи его</text>
+          <effect>-50</effect>
+          <node>
+            <text>"Странный бомж" оказался не так прост. Я еле успел убежать. Он еще где-то рядом. Может мне всё-таки стоит уйти?</text>
+
+            <button id="0">
+              <text>Уходи</text>
+              <effect>10</effect>
+            </button>
+
+            <button id="1">
+              <text>Мочи бомжа!</text>
+              <hospitalEffect>100</hospitalEffect>
+            </button>
+          </node>
+        </button>
+      </node>
+
+      <success>
+        <text>Всё прошло идеально... Если не считать появления этого непонятного алкаша</text>
+        <sprite>
+          <spriteType>robberies</spriteType>
+          <spriteId>0</spriteId>
+        </sprite>
+        <button id="0">
+          <text>ОК</text>
+        </button>
+      </success>
+
+      <fail>
+        <text>Проклятый бомж всё испортил, мать его...!</text>
+        <sptite>
+          <spriteType>robberies</spriteType>
+          <spriteId>0</spriteId>
+        </sptite>
+
+        <button id="0">
+          <text>ОК</text>
+        </button>
+      </fail>
+    </event>
+
+    <event id="1">
+      <success>
+        <text>Всё прошло идеально. Бабло наше</text>
+        <sprite>
+          <spriteType>robberies</spriteType>
+          <spriteId>0</spriteId>
+        </sprite>
+
+        <button id="0">
+          <text>ОК</text>
+        </button>
+      </success>
+
+      <fail>
+        <text>Крепкий в этот раз попался чувак. Я еле унёс ноги!</text>
+        <sprite>
+          <spriteType>robberies</spriteType>
+          <spriteId>0</spriteId>
+        </sprite>
+
+        <button id="0">
+          <text>ОК</text>
+        </button>
+      </fail>
+    </event>
+
+    <event id="2">
+      <node>
+        <text>Я заметил двух пьяных мужиков. Может грабануть их?  </text>
+        <sprite>
+          <spriteType>people</spriteType>
+          <spriteId>1</spriteId>
+        </sprite>
+
+        <button id="0">
+          <text>Ограбить</text>
+
+          <node>
+            <text>С легкостью разобрался с  ними, но вдалеке виднеется силуэт человека. </text>
+            <sptite>
+              <spriteType>people</spriteType>
+              <spriteId>2</spriteId>
+            </sptite>
+            <button id="0">
+              <text>Разобраться с ним</text>
+
+              <node>
+                <text>Не успел я приблизиться к нему, он крикнул, что вызвал копов и убежал. </text>
+                <sprite>
+                  <spriteType>characters</spriteType>
+                </sprite>
+                <button id="0">
+                  <text>Вернуться к делу</text>
+                  <effect>-25</effect>
+                  <policeEffect>30</policeEffect>
+                  <money>500</money>
+                </button>
+
+                <button id="1">
+                  <text>Не идти на дело</text>
+                  <money>500</money>
+                  <effect>-100</effect>
+                  <policeEffect>100</policeEffect>
+                  <hospitalEffect>100</hospitalEffect>
+                </button>
+              </node>
+
+              <node>
+                <text>Этот оказался вооружен и задел меня ножом. </text>
+                <sprite>
+                  <spriteType>people</spriteType>
+                  <spriteId>2</spriteId>
+                </sprite>
+                <button id="0">
+                  <text>Вернуться к делу</text>
+                  <effect>-20</effect>
+                  <health>35</health>
+                  <hospitalEffect>30</hospitalEffect>
+                  <money>500</money>
+                </button>
+
+                <button id="1">
+                  <text>Не идти на дело</text>
+                  <money>500</money>
+                  <health>35</health>
+                  <effect>-100</effect>
+                  <hospitalEffect>100</hospitalEffect>
+                  <policeEffect>100</policeEffect>
+                </button>
+              </node>
+
+              <node>
+                <text>Это оказался коп. </text>
+                <sprite>
+                  <spriteType>people</spriteType>
+                  <spriteId>3</spriteId>
+                </sprite>
+                <button id="0">
+                  <text>Эх, не повезло</text>
+                  <effect>-100</effect>
+                  <policeEffect>100</policeEffect>
+                </button>
+              </node>
+            </button>
+
+            <button id="1">
+              <text>Попытаться спрятаться</text>
+
+              <node>
+                <text>Он меня не заметил. </text>
+                <sprite>
+                  <spriteType>people</spriteType>
+                  <spriteId>2</spriteId>
+                </sprite>
+                <button id="0">
+                  <text>Вернуться к делу</text>
+                  <money>500</money>
+                </button>
+
+                <button id="1">
+                  <text>Не идти на дело</text>
+                  <money>500</money>
+                  <effect>-100</effect>
+                  <hospitalEffect>-100</hospitalEffect>
+                  <policeEffect>-100</policeEffect>
+                </button>
+              </node>
+
+              <node>
+                <text>Незаметно уйти не удалось, он меня преследует. </text>
+
+                <sprite>
+                  <spriteType>people</spriteType>
+                  <spriteId>2</spriteId>
+                </sprite>
+
+                <button id="0">
+                  <text>Убежать</text>
+
+                  <node>
+                    <text>Мне удалось убежать от него. </text>
+                    <sprite>
+                      <spriteType>characters</spriteType>
+                    </sprite>
+                    <button id="0">
+                      <text>Ок</text>
+                      <money>500</money>
+                      <policeKnowledge>5</policeKnowledge>
+                    </button>
+                  </node>
+
+                </button>
+
+                <button id="1">
+                  <text>Разобраться с ним</text>
+
+                  <node>
+                    <text>Уложил и этого. </text>
+                    <sprite>
+                      <spriteType>characters</spriteType>
+                    </sprite>
+                    <button id="0">
+                      <text>Ок</text>
+                      <money>1000</money>
+                    </button>
+                  </node>
+
+                  <node>
+                    <text>Я разобрался с ним, но получил травму. </text>
+                    <sprite>
+                      <spriteType>characters</spriteType>
+                    </sprite>
+                    <button id="0">
+                      <text>Ок</text>
+                      <hospitalEffect>25</hospitalEffect>
+                      <health>15</health>
+                      <money>1000</money>
+                    </button>
+                  </node>
+
+                  <node>
+                    <text>После пары полученных ударов он испугался и убежал. </text>
+                    <sprite>
+                      <spriteType>characters</spriteType>
+                    </sprite>
+                    <button id="0">
+                      <text>Ок</text>
+                      <money>500</money>
+                    </button>
+                  </node>
+
+                  <node>
+                    <text>А этот крепкий, уложил меня и забрал деньги тех пьянчуг. </text>
+                    <sprite>
+                      <spriteType>characters</spriteType>
+                    </sprite>
+                    <button id="0">
+                      <text>Ок</text>
+                      <effect>-10</effect>
+                      <hospitalEffect>45</hospitalEffect>
+                      <health>10</health>
+                    </button>
+                  </node>
+
+                  <node>
+                    <text>Этот мужик отделал меня, уложил на землю и вызвал копов. </text>
+                    <sprite>
+                      <spriteType>characters</spriteType>
+                    </sprite>
+                    <button id="0">
+                      <text>Ок</text>
+                      <effect>-100</effect>
+                      <policeEffect>100</policeEffect>
+                      <health>10</health>
+                    </button>
+                  </node>
+                </button>
+              </node>
+            </button>
+          </node>
+
+          <node>
+            <text>Они оказались не так просты и смогли ранить меня, но я справился с ними. </text>
+            <sptite>
+              <spriteType>characters</spriteType>
+            </sptite>
+            <button id="0">
+              <text>Вернуться к делу</text>
+              <effect>-10</effect>
+              <hospitalEffect>30</hospitalEffect>
+              <money>500</money>
+              <health>20</health>
+            </button>
+
+            <button id="1">
+              <text>Не идти на дело</text>
+              <money>500</money>
+              <effect>-100</effect>
+              <hospitalEffect>-100</hospitalEffect>
+              <policeEffect>-100</policeEffect>
+            </button>
+          </node>
+
+          <node>
+            <text>Видимо, они вообще не чувствуют боли, поэтому они меня отделали и убежали. </text>
+            <sptite>
+              <spriteType>characters</spriteType>
+            </sptite>
+            <button id="0">
+              <text>Это провал...</text>
+              <effect>-20</effect>
+              <hospitalEffect>45</hospitalEffect>
+              <health>20</health>
+            </button>
+          </node>
+        </button>
+
+        <button id ="1">
+          <text>Идти на дело</text>
+
+          <node>
+            <text>Они увидели меня и крикнули что-то невнятное. </text>
+            <sprite>
+              <spriteType>people</spriteType>
+              <spriteId>2</spriteId>
+            </sprite>
+            <button id="0">
+              <text>Не обращать внимания</text>
+
+              <node>
+                <text>Кажется, они ушли и вряд ли запомнили меня. </text>
+                <sprite>
+                  <spriteType>characters</spriteType>
+                </sprite>
+                <button id="0">
+                  <text>Ок</text>
+                </button>
+              </node>
+
+              <node>
+                <text>Они побежали за мной, но в силу своего состояния не смогли меня догнать.</text>
+                <sprite>
+                  <spriteType>characters</spriteType>
+                </sprite>
+                <button id="0">
+                  <text>Ок</text>
+                </button>
+              </node>
+
+              <node>
+                <text>Они ушли, но они могли меня запомнить.</text>
+                <sprite>
+                  <spriteType>characters</spriteType>
+                </sprite>
+                <button id="0">
+                  <text>Ок</text>
+                  <policeKnowledge>5</policeKnowledge>
+                </button>
+              </node>
+
+              <node>
+                <text>Они побежали за мной и мне пришлось их уложить. </text>
+                <sprite>
+                  <spriteType>characters</spriteType>
+                </sprite>
+                <button id="0">
+                  <text>Вернуться к делу</text>
+                  <money>500</money>
+                </button>
+
+                <button id="1">
+                  <text>Не идти на дело</text>
+                  <money>500</money>
+                  <effect>-100</effect>
+                  <hospitalEffect>-100</hospitalEffect>
+                  <policeEffect>-100</policeEffect>
+                </button>
+              </node>
+            </button>
+
+            <button id="1">
+              <text>Убежать</text>
+              <node>
+                <text>Я далеко убежал, они меня не найдут, однако на дело вернуться не получится. </text>
+                <sprite>
+                  <spriteType>characters</spriteType>
+                </sprite>
+                <button id="0">
+                  <text>Ок</text>
+                </button>
+              </node>
+
+              <node>
+                <text>Я пытался убежать, но запнулся, чем вызвал смех у алкашей. После такого я уж не пойду на дело… </text>
+                <sprite>
+                  <spriteType>characters</spriteType>
+                </sprite>
+                <button id="0">
+                  <text>Ок</text>
+                  <hospitalEffect>-100</hospitalEffect>
+                  <policeEffect>-100</policeEffect>
+                  <effect>-100</effect>
+                  <health>10</health>
+                </button>
+              </node>
+
+              <node>
+                <text>Только я собирался убежать, они позвали меня выпить. </text>
+                <sprite>
+                  <spriteType>people</spriteType>
+                  <spriteId>2</spriteId>
+                </sprite>
+                <button id="0">
+                  <text>Согласиться</text>
+                  <money>-500</money>
+                  <effect>-100</effect>
+                  <hospitalEffect>-100</hospitalEffect>
+                  <policeEffect>-100</policeEffect>
+                </button>
+
+                <button id="1">
+                  <text>Отказаться</text>
+                </button>
+              </node>
+            </button>
+          </node>
+
+          <node>
+            <text>Кажется, между ними возник спор, и вскоре завязалась драка. </text>
+            <sptite>
+              <spriteType>people</spriteType>
+              <spriteId>2</spriteId>
+            </sptite>
+            <button id="0">
+              <text>Идти на дело</text>
+              <node>
+                <text>У меня есть дела поважнее разборки алкашей… </text>
+                <sprite>
+                  <spriteType>characters</spriteType>
+                </sprite>
+                <button id="0">
+                  <text>Ок</text>
+                </button>
+              </node>
+            </button>
+
+            <button id="1">
+              <text>Подойти к ним</text>
+              <node>
+                <text>Один из мужиков мощным ударом уложил своего собутыльника и скрылся во тьме. Я ограбил лежащего мужика. </text>
+                <sprite>
+                  <spriteType>people</spriteType>
+                  <spriteId>2</spriteId>
+                </sprite>
+                <button id="0">
+                  <money>250</money>
+                  <text>Ок</text>
+                </button>
+              </node>
+
+              <node>
+                <text>Кажется, во мне они увидели общего врага, и это их сплотило.</text>
+                <sprite>
+                  <spriteType>people</spriteType>
+                  <spriteId>2</spriteId>
+                </sprite>
+                <button id="0">
+                  <text>Драться</text>
+
+                  <node>
+                    <text>Без особого труда раскидал алкашей и ограбил их. Возвращаюсь на дело. </text>
+                    <sprite>
+                      <spriteType>characters</spriteType>
+                    </sprite>
+                    <button id="0">
+                      <money>500</money>
+                      <text>Ок</text>
+                    </button>
+                  </node>
+
+                  <node>
+                    <text>Получил пару раз по лицу, но раскидал алкашей и ограбил их. Возвращаюсь на дело. </text>
+                    <sprite>
+                      <spriteType>characters</spriteType>
+                    </sprite>
+                    <button id="0">
+                      <effect>-10</effect>
+                      <hospitalEffect>30</hospitalEffect>
+                      <money>500</money>
+                      <health>5</health>
+                      <text>Ок</text>
+                    </button>
+                  </node>
+
+                  <node>
+                    <text>Мощным ударом меня уложили на землю. Далее они принялись друг за друга, а я, пользуясь моментом, убежал. </text>
+                    <sprite>
+                      <spriteType>characters</spriteType>
+                    </sprite>
+                    <button id="0">
+                      <text>Ок</text>
+                      <effect>-10</effect>
+                      <hospitalEffect>30</hospitalEffect>
+                      <health>15</health>
+                    </button>
+                  </node>
+                </button>
+
+                <button id="0">
+                  <text>Убежать</text>
+
+                  <node>
+                    <text>Я без труда оторвался от пьяниц и вернулся к реальному делу</text>
+                    <sprite>
+                      <spriteType>characters</spriteType>
+                    </sprite>
+                    <button id="0">
+                      <text>Ок</text>
+                    </button>
+                  </node>
+                </button>
+              </node>
+            </button>
+          </node>
+        </button>
+      </node>
+
+      <success>
+        <text>Всё прошло идеально. Бабло наше</text>
+        <sprite>
+          <spriteType>robberies</spriteType>
+          <spriteId>0</spriteId>
+        </sprite>
+
+        <button id="0">
+          <text>ОК</text>
+        </button>
+      </success>
+
+      <fail>
+        <text>Крепкий в этот раз попался чувак. Я еле унёс ноги!</text>
+        <sprite>
+          <spriteType>robberies</spriteType>
+          <spriteId>0</spriteId>
+        </sprite>
+
+        <button id="0">
+          <text>ОК</text>
+        </button>
+      </fail>
+
+    </event>
+
+    <event id="3">
+      <node>
+        <text>Где-то неподалеку слышны звуки выстрелов. Может, стоит проверить, что там?</text>
+        <sprite>
+          <spriteType>robberies</spriteType>
+          <spriteId>0</spriteId>
+        </sprite>
+
+        <button id="0">
+
+          <text>Проверить</text>
+          <node>
+
+            <text>В кустах виднеются ноги, а вдалеке – две быстро удаляющиеся фигуры.</text>
+            <sprite>
+              <spriteType>people</spriteType>
+              <spriteId>4</spriteId>
+            </sprite>
+
+            <button id="0">
+
+              <text>Подойти к кустам</text>
+
+              <node>
+
+                <text>Этот человек уже мертв. Обшманаю его и вернусь к делу.</text>
+                <sprite>
+                  <spriteType>people</spriteType>
+                  <spriteId>5</spriteId>
+                </sprite>
+
+                <button id="0">
+                  <text>Ок</text>
+                  <money>500</money>
+                </button>
+
+              </node>
+
+              <node>
+
+                <text>Кажется, он еще дышит. Вызову скорую и возьму с него деньги за вызов. Ну а потом – за реальное дело.</text>
+                <sprite>
+                  <spriteType>people</spriteType>
+                  <spriteId>5</spriteId>
+                </sprite>
+
+                <button id="0">
+                  <text>Ок</text>
+                  <money>500</money>
+                </button>
+
+              </node>
+
+              <node>
+
+                <text>Человек оказался жив, и это был коп. Перед страхом смерти он согласился замять пару дел на нашу банду. Ну а я вернусь за дело.</text>
+                <sprite>
+                  <spriteType>people</spriteType>
+                  <spriteId>5</spriteId>
+                </sprite>
+
+                <button id="0">
+                  <text>Ок</text>
+                  <policeKnowledge>-10</policeKnowledge>
+                </button>
+
+              </node>
+
+            </button>
+
+            <button id="1">
+
+              <text>Бежать за преступниками</text>
+
+              <node>
+
+                <text>Это была плохая идея… Итог – ранение в ногу.</text>
+                <sprite>
+                  <spriteType>characters</spriteType>
+                </sprite>
+
+                <button id="0">
+                  <text>Ок</text>
+                  <effect>-100</effect>
+                  <hospitalEffect>100</hospitalEffect>
+                  <policeEffect>-100</policeEffect>
+                </button>
+
+              </node>
+
+              <node>
+
+                <text>Эхх, они были быстрее меня, хотя может это и к лучшему. Ладно, вернусь за дело.</text>
+                <sprite>
+                  <spriteType>characters</spriteType>
+                </sprite>
+
+                <button id="0">
+                  <text>Ок</text>
+                </button>
+
+              </node>
+
+              <node>
+
+                <text>Они заметили меня, спрятались и открыли огонь. В результате этой стычки мною была получена травма, а еще эти двое ограбили и меня.</text>
+                <sprite>
+                  <spriteType>characters</spriteType>
+
+                </sprite>
+
+                <button id="0">
+                  <text>Ок</text>
+                  <effect>-100</effect>
+                  <hospitalEffect>100</hospitalEffect>
+                  <policeEffect>-100</policeEffect>
+                  <money>-500</money>
+                </button>
+
+              </node>
+
+            </button>
+
+          </node>
+
+          <node>
+            <text>Больше выстрелов не было слышно, поэтому место стрельбы не было найдено.</text>
+            <sprite>
+              <spriteType>characters</spriteType>
+            </sprite>
+
+            <button id="0">
+              <text>Ок</text>
+            </button>
+          </node>
+        </button>
+
+        <button id="1">
+          <text>Бежать</text>
+          <node>
+
+            <text>Кажется, это было разумное решение…  Вернусь теперь к делу.</text>
+
+            <sprite>
+              <spriteType>characters</spriteType>
+            </sprite>
+
+            <button id="0">
+              <text>Ок</text>
+            </button>
+
+          </node>
+
+          <node>
+
+            <text>Стрельба велась совсем неподалеку, поэтому преступники услышали меня и теперь хотят меня замочить.</text>
+
+            <sprite>
+              <spriteType>characters</spriteType>
+            </sprite>
+
+            <button id="0">
+              <text>Спрятаться</text>
+
+              <node>
+                <text>Мне удалось спрятаться, но на дело лучше уже не идти.</text>
+                <sprite>
+                  <spriteType>characters</spriteType>
+                </sprite>
+
+                <button id="0">
+                  <text>Ок</text>
+                  <effect>-100</effect>
+                  <hospitalEffect>-100</hospitalEffect>
+                  <policeEffect>-100</policeEffect>
+                </button>
+              </node>
+
+              <node>
+                <text>Меня спалили, однако мне удалось откупиться деньгами.</text>
+                <sprite>
+                  <spriteType>characters</spriteType>
+                </sprite>
+
+                <button id="0">
+                  <text>Ок</text>
+                  <money>-500</money>
+                </button>
+
+              </node>
+
+              <node>
+                <text>Меня заметили и чуть не пристрелили, после чего еще и ограбили.</text>
+                <sprite>
+                  <spriteType>characters</spriteType>
+                </sprite>
+
+                <button id="0">
+                  <text>Ок</text>
+                  <effect>-100</effect>
+                  <hospitalEffect>100</hospitalEffect>
+                  <policeEffect>-100</policeEffect>
+                  <money>-500</money>
+                </button>
+              </node>
+            </button>
+
+            <button id="1">
+              <text>Бежать быстрее</text>
+
+              <node>
+                <text>Мне удалось убежать от них… Теперь можно вернуться к делу.</text>
+                <sprite>
+                  <spriteType>characters</spriteType>
+                </sprite>
+
+                <button id="0">
+                  <text>Ок</text>
+                </button>
+              </node>
+
+              <node>
+                <text>Бежать быстрее пули мне не удалось. Буду отдыхать в больнице.</text>
+                <sprite>
+                  <spriteType>characters</spriteType>
+                </sprite>
+
+                <button id="0">
+                  <text>Ок</text>
+                  <effect>-100</effect>
+                  <hospitalEffect>100</hospitalEffect>
+                  <policeEffect>-100</policeEffect>
+                </button>
+              </node>
+            </button>
+          </node>
+        </button>
+      </node>
+
+      <success>
+        <text>Всё прошло идеально... Если не считать произошедшего, конечно</text>
+        <sprite>
+          <spriteType>robberies</spriteType>
+          <spriteId>0</spriteId>
+        </sprite>
+        <button id="0">
+          <text>ОК</text>
+        </button>
+      </success>
+
+      <fail>
+        <text>Полный провал. И почему только это случилось со мной!</text>
+        <sptite>
+          <spriteType>robberies</spriteType>
+          <spriteId>0</spriteId>
+        </sptite>
+
+        <button id="0">
+          <text>ОК</text>
+        </button>
+      </fail>
+
+    </event>
+  </robbery>
+
+
+  <robbery type="1">
+    <event id="0">
+      <success>
+        <text>Всё прошло идеально. Бабло наше</text>
+        <sprite>
+          <spriteType>robberies</spriteType>
+          <spriteId>0</spriteId>
+        </sprite>
+
+        <button id="0">
+          <text>ОК</text>
+        </button>
+      </success>
+
+      <fail>
+        <text>Крепкий в этот раз попался чувак. Я еле унёс ноги!</text>
+        <sprite>
+          <spriteType>robberies</spriteType>
+          <spriteId>0</spriteId>
+        </sprite>
+
+        <button id="0">
+          <text>ОК</text>
+        </button>
+      </fail>
+    </event>
+  </robbery>
+  <robbery type="2">
+    <event id="0">
+      <success>
+        <text>Всё прошло идеально. Бабло наше</text>
+        <sprite>
+          <spriteType>robberies</spriteType>
+          <spriteId>0</spriteId>
+        </sprite>
+
+        <button id="0">
+          <text>ОК</text>
+        </button>
+      </success>
+
+      <fail>
+        <text>Крепкий в этот раз попался чувак. Я еле унёс ноги!</text>
+        <sprite>
+          <spriteType>robberies</spriteType>
+          <spriteId>0</spriteId>
+        </sprite>
+
+        <button id="0">
+          <text>ОК</text>
+        </button>
+      </fail>
+    </event>
+
+  </robbery>
+  <robbery type="3">
+    <event id="0">
+      <success>
+        <text>Всё прошло идеально. Бабло наше</text>
+        <sprite>
+          <spriteType>robberies</spriteType>
+          <spriteId>0</spriteId>
+        </sprite>
+
+        <button id="0">
+          <text>ОК</text>
+        </button>
+      </success>
+
+      <fail>
+        <text>Крепкий в этот раз попался чувак. Я еле унёс ноги!</text>
+        <sprite>
+          <spriteType>robberies</spriteType>
+          <spriteId>0</spriteId>
+        </sprite>
+
+        <button id="0">
+          <text>ОК</text>
+        </button>
+      </fail>
+    </event>
+
+  </robbery>
+  <robbery type="4">
+    <event id="0">
+      <success>
+        <text>Всё прошло идеально. Бабло наше</text>
+        <sprite>
+          <spriteType>robberies</spriteType>
+          <spriteId>0</spriteId>
+        </sprite>
+
+        <button id="0">
+          <text>ОК</text>
+        </button>
+      </success>
+
+      <fail>
+        <text>Крепкий в этот раз попался чувак. Я еле унёс ноги!</text>
+        <sprite>
+          <spriteType>robberies</spriteType>
+          <spriteId>0</spriteId>
+        </sprite>
+
+        <button id="0">
+          <text>ОК</text>
+        </button>
+      </fail>
+    </event>
+
+  </robbery>
+</eventsCollection>

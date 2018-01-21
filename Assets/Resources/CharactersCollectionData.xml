@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<charactersCollection>
+  <specialCharacters>
+    <characters authority="0" amount="2">
+      <character id="0">
+        <name>Вася Суровый</name>
+        <spriteId>0</spriteId>
+        <traitId>0</traitId>
+        <history></history>
+      </character>
+
+      <character id="1">
+        <name>Петя Кирпич</name>
+        <spriteId>1</spriteId>
+        <traitId>1</traitId>
+        <history></history>
+      </character>
+    </characters>
+    <characters authority="1" amount="0"></characters>
+    <characters authority="2" amount="0"></characters>
+    <characters authority="3" amount="0"></characters>
+    <characters authority="4" amount="1">
+      <character id="0">
+        <name>Андрюха Груз</name>
+        <spriteId>1</spriteId>
+        <traitId>0</traitId>
+        <history>
+          Ранее преподавал электромеханику в местной шараге. Решил заняться реальным делом. Множественные удары электричеством сделали его абсолютно бесстрашным.
+        </history>
+      </character>
+    </characters>
+    <characters authority="5" amount="1">
+      <character id="0">
+        <name>Андрюха Груз</name>
+        <spriteId>1</spriteId>
+        <traitId>2</traitId>
+        <history>
+          Ранее преподавал электромеханику в местной шараге. Решил заняться реальным делом. Множественные удары электричеством сделали его абсолютно бесстрашным.
+        </history>
+      </character>
+    </characters>
+    <characters authority="6" amount="1">
+      <character id="0">
+        <name>Андрюха Груз</name>
+        <spriteId>1</spriteId>
+        <traitId>3</traitId>
+        <history>
+          Ранее преподавал электромеханику в местной шараге. Решил заняться реальным делом. Множественные удары электричеством сделали его абсолютно бесстрашным.
+        </history>
+      </character>
+    </characters>
+    <characters authority="7" amount="1">
+      <character id="0">
+        <name>Андрюха Груз</name>
+        <spriteId>1</spriteId>
+        <traitId>0</traitId>
+        <history>
+          Ранее преподавал электромеханику в местной шараге. Решил заняться реальным делом. Множественные удары электричеством сделали его абсолютно бесстрашным.
+        </history>
+      </character>
+    </characters>
+    <characters authority="8" amount="1">
+      <character id="0">
+        <name>Андрюха Груз</name>
+        <spriteId>1</spriteId>
+        <traitId>4</traitId>
+        <history>
+          Ранее преподавал электромеханику в местной шараге. Решил заняться реальным делом. Множественные удары электричеством сделали его абсолютно бесстрашным.
+        </history>
+      </character>
+    </characters>
+    <characters authority="9" amount="3">
+      <character id="0">
+        <name>Андрюха Груз</name>
+        <spriteId>1</spriteId>
+        <traitId>0</traitId>
+        <history>
+          Ранее преподавал электромеханику в местной шараге. Решил заняться реальным делом. Множественные удары электричеством сделали его абсолютно бесстрашным.
+        </history>
+      </character>
+      <character id="1">
+        <name>Вася Суровый</name>
+        <spriteId>1</spriteId>
+        <traitId>0</traitId>
+        <history>
+          Великий математик в прошлом. Может запросто рассчитать траекторию удара и спрогнозировать количество выбитых зубов.
+        </history>
+      </character>
+
+      <character id="2">
+        <name>Петя Кирпич</name>
+        <spriteId>1</spriteId>
+        <traitId>5</traitId>
+        <history>
+          В прошлом был неплохим программистом. Но какое-то событие в корне изменило его мировоззрение. Может запросто "хакнуть" дверь с ноги.
+        </history>
+      </character>
+
+    </characters>
+  </specialCharacters>
+
+  <commonMales>
+    <names amount="10">
+      <name id="0">Седой</name>
+      <name id="1">Череп</name>
+      <name id="2">Груз</name>
+      <name id="3">Ворон</name>
+      <name id="4">Дрозд</name>
+      <name id="5">Статический</name>
+      <name id="6">Динамический</name>
+      <name id="7">Терминатор</name>
+      <name id="8">Борода</name>
+      <name id="9">Кабан</name>
+    </names>
+
+    <histories amount="3">
+      <history id="0">Обычный вор, коих миллионы. Предпочитает действовать в одиночку.</history>
+      <history id="1">Местный уличный головорез. Обожает ломать кости.</history>
+      <history id="2">Бывший карточный шулер. Обладает невероятным складом ума.</history>
+    </histories>
+  </commonMales>
+
+  <commonFemales>
+    <names>
+      <name id="0">Кейт</name>
+      <name id="1">Сара</name>
+      <name id="2">Алекса</name>
+      <name id="3">Эшли</name>
+      <name id="4">Синди</name>
+      <name id="5">Марта</name>
+      <name id="6">Диана</name>
+      <name id="7">Элиза</name>
+    </names>
+
+    <histories amount="1">
+      <history id="0">Обычная воровка, коих миллионы. Предпочитает действовать в одиночку</history>
+    </histories>
+  </commonFemales>
+
+</charactersCollection>

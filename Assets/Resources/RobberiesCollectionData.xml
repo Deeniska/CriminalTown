@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<robberies>
+  <robbery type="0">
+    <name>Тёмный переулок</name>
+    <description>Темноватое местечко, однако. И как только этих людишек с толстыми кошельками сюда заносит. Быть может, это шанс?</description>
+    <descriptionFull></descriptionFull>
+    <strenghtInfluence>1.5</strenghtInfluence>
+    <agilityInfluence>1</agilityInfluence>
+    <skillInfluence>0.5</skillInfluence>
+    <luckInfluence>0.5</luckInfluence>
+  </robbery>
+  
+  <robbery type="1">
+    <name>Ларёк</name>
+    <description>Обычный ларёк. Наживы маловато, конечно, но лучше, чем ничего... Да и выпивка всегда найдётся.</description>
+    <descriptionFull></descriptionFull>
+    <strenghtInfluence>1</strenghtInfluence>
+    <agilityInfluence>0.5</agilityInfluence>
+    <skillInfluence>1.5</skillInfluence>
+    <luckInfluence>0.5</luckInfluence>
+  </robbery>
+  
+  <robbery type="2">
+    <name>Жилой дом</name>
+    <description></description>
+    <descriptionFull></descriptionFull>
+    <strenghtInfluence>0.5</strenghtInfluence>
+    <agilityInfluence>1</agilityInfluence>
+    <skillInfluence>1.5</skillInfluence>
+    <luckInfluence>0.5</luckInfluence>
+  </robbery>
+  
+  <robbery type="3">
+    <name>Магазин</name>
+    <description></description>
+    <descriptionFull></descriptionFull>
+    <strenghtInfluence>1</strenghtInfluence>
+    <agilityInfluence>1.5</agilityInfluence>
+    <skillInfluence>0.5</skillInfluence>
+    <luckInfluence>0.5</luckInfluence>
+  </robbery>
+  
+  <robbery type="4">
+    <name>Срыв сделки банды</name>
+    <description></description>
+    <descriptionFull></descriptionFull>
+    <strenghtInfluence>1.5</strenghtInfluence>
+    <agilityInfluence>1</agilityInfluence>
+    <skillInfluence>0.5</skillInfluence>
+    <luckInfluence>0.5</luckInfluence>
+  </robbery>
+</robberies>
